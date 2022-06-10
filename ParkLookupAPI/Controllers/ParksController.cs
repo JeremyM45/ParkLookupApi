@@ -39,7 +39,7 @@ namespace ParkLookupAPI.Controllers
     {
       _db.Parks.Add(park);
       await _db.SaveChangesAsync();
-      return CreatedAtAction("Post", new {id = park.ParkId}, park);
+      return CreatedAtAction(nameof(GetPark), new {id = park.ParkId}, park);
     }
     [HttpGet("{id}")]
     public async Task<ActionResult<Park>> GetPark(int id)
@@ -74,6 +74,18 @@ namespace ParkLookupAPI.Controllers
           throw;
         }
       }
+      return NoContent();
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+      var park = await _db.Parks.FindAsync(id);
+      if(park == null)
+      {
+        return NotFound();
+      }
+      _db.Parks.Remove(park);
+      await _db.SaveChangesAsync();
       return NoContent();
     }
     private bool ParkExists(int id)
