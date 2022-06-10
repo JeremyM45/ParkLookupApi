@@ -1,6 +1,8 @@
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,12 +33,32 @@ namespace ParkLookupAPI
 
             services.AddDbContext<ParkLookupAPIContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
+            
             services.AddControllers();
+
+            services.AddSwaggerGen(m =>
+            {
+              m.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+              {
+                Version = "V1",
+                Title = "Park Loopup API",
+                Description = "API for looking up and adding national and state parks"
+              });
+              var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+              var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+              m.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+              s.SwaggerEndpoint("/swagger/v1/swagger.json", "Park Lookup API");
+              s.RoutePrefix = string.Empty;
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
