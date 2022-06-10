@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ParkLookupAPI.Models;
 
 namespace ParkLookupAPI.Migrations
 {
     [DbContext(typeof(ParkLookupAPIContext))]
-    partial class ParkLookupAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20220610174259_api auth")]
+    partial class apiauth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
