@@ -34,5 +34,12 @@ namespace ParkLookupAPI.Controllers
       }
       return await query.ToListAsync();
     }
+    [HttpPost]
+    public async Task<ActionResult<Park>> Post(Park park)
+    {
+      _db.Parks.Add(park);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction("Post", new {id = park.ParkId}, park);
+    }
   }
 }
