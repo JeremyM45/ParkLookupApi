@@ -72,11 +72,11 @@ dotnet ef database update
 
 ### Restore and Run
 
-* Type dotnet retore in terminal while in the PierresTreats folder
+* Type dotnet retore in terminal while in the ParkLookupAPI folder
 ```
 dotnet restore
 ```
-* Then type dotnet run in the terminal while still in the PierresTreats folder
+* Then type dotnet run in the terminal while still in the ParkLookupAPI folder
 ```
 dotnet run
 ```
