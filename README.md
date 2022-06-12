@@ -88,18 +88,24 @@ All register/login calls will be POSTs.
 |:---------|:-------|
 |Register|api/AuthManagement/Register|
 |Login| api/AuthManagement/Login|
+
 To Register you must provide a username, an email address, and a password
 This is what a proper registration call looks like with the expected output
+
 ![Example in Postman of a proper registration request](https://i.gyazo.com/973c4bdbece113c678fc70383821cef4.png)
 
 To Login you only need the email and password
 This is what a proper login call looks like with the expected output
+
 ![Example in Postman of a proper login request](https://i.gyazo.com/85f4f284fe85265bf7b041b54147539c.png)
+
 To be able to make any of the Park related requests to the API you must be logged in. For authentication this API uses Jwt Authentication. To be authenticated in Postman you need to copy the long string after "token": in the output body, click on Headers at the top, add a new line by clicking on the bottom most line and type "Authorization" in the key field and in the value field put "Bearer" and then the token you copied.
 
 Your Postman Header group should look something like this after adding the Authorization line (NOTE: if you don't see the lines above the Authorization line that you added it's probably because they are set to be hidden by default)
 (2nd NOTE: the token string is too long to show the entire thing in this view, so when you are adding it in the value field it may look different until you click out of the value field)
+
 ![enter image description here](https://i.gyazo.com/aaed97aa79bd78e63a5da7e95f6d55c9.png)
+
 ### Accessing Parks
 |Request| End Point|
 |:---------|:-------|
@@ -108,6 +114,7 @@ Your Postman Header group should look something like this after adding the Autho
 |GET {id}| api/Parks/{id}|
 |PUT| api/Parks/{id}
 |DELTE| api/Parks/{id}|
+
 {id} is a stand in for the actual id of the park, so to get park by with the id of 2 the request would look like _api/Parks/2_
 When making a POST call do not include a parkId in the body, the id will be automatically generated. However, when making a PUT call you must include the parkId in the body.
 
