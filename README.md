@@ -112,9 +112,13 @@ Your Postman Header group should look something like this after adding the Autho
 When making a POST call do not include a parkId in the body, the id will be automatically generated. However, when making a PUT call you must include the parkId in the body.
 
 This is what a proper POST call looks like in Postman
+
 ![Example In Postman of proper POST call](https://i.gyazo.com/9d6e005917aa6648563f534143ddad75.png)
+
 This is what a proper PUT call looks like in Postman
+
 ![Example In Postman of proper PUT call](https://i.gyazo.com/040b1aa1b10f92e10e0c74676caaa262.png)
+
 ## Known Bugs
 
 *  _No Known Bugs_
